@@ -1,0 +1,13 @@
+# Ignore folders from source code editors
+.vscode
+.idea
+
+# Ignore node modules
+node_modules/
+
+# Ignore eleventy output when doing manual tests
+_site/
+
+# Cache files
+.DS_Store
+Thumbs.db

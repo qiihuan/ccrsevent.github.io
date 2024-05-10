@@ -1,0 +1,13 @@
+{
+  "name": "tcx-ccrs-conference",
+  "version": "0.0.1",
+  "description": "Conference static event page",
+  "scripts": {
+    "dev": "eleventy --serve --incremental",
+    "build": "eleventy"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
