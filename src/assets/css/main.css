@@ -15,6 +15,16 @@
   --bs-teal: #00495c;
 
   --bs-body-line-height: 1.75;
+
+  --tc-section-padding-top: 10rem;
+  --tc-section-padding-bottom: 12rem;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --tc-section-padding-top: 6rem;
+    --tc-section-padding-bottom: 6rem;
+  }
 }
 
 .navbar {
@@ -39,6 +49,11 @@
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
   background-color: var(--bs-secondary);
+}
+
+.navbar .navbar-toggler {
+  height: 3rem;
+  border: none;
 }
 
 /************************************************
@@ -131,12 +146,12 @@
  ************************************************/
 
 .tc-section-jumbotron {
-  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10rem 0 12rem 0;
+  padding-top: var(--tc-section-padding-top);
+  padding-bottom: var(--tc-section-padding-bottom);
   background-image: linear-gradient(to bottom, transparent 0%, #3b9bd433 50%), url('../img/banner1.png');
   background-size: cover;
   background-position: center;
@@ -198,21 +213,20 @@
  ************************************************/
 
 .tc-section-speakers {
-  /* min-height: 100vh; */
-  padding: 12rem 0 8rem;
+  padding-top: var(--tc-section-padding-top);
+  padding-bottom: var(--tc-section-padding-bottom);
   background-image: radial-gradient(circle at center -50%, #fff6 0%, transparent 80%), linear-gradient(100deg, #16548a 30%, #124981 30%, #124981 45%, #104277 45%);
   color: #fff;
   overflow: hidden;
 }
 
 .tc-speakers {
-  margin-top: 4rem;
 }
 
 .tc-speaker {
   position: relative;
   padding: 1rem;
-  margin-bottom: 4rem;
+  margin-top: 4rem;
   background-color: #343a4099;
   box-shadow: 0 20px 13px #0001, 0 6px 5px #0003;
 }
@@ -280,8 +294,8 @@
  ************************************************/
 
 .tc-section-agenda {
-  /* min-height: 100vh; */
-  padding: 12rem 0;
+  padding-top: var(--tc-section-padding-top);
+  padding-bottom: var(--tc-section-padding-bottom);
   background-image: radial-gradient(circle at center -50%, #fff 0%, transparent 80%), linear-gradient(to bottom, #ace1ff, #ace1ffcc), url('../img/city.png');
   background-size: cover, cover, contain;
   background-position: center, center, bottom center;
@@ -380,8 +394,8 @@
  ************************************************/
 
 .tc-section-articles {
-  /* min-height: 100vh; */
-  padding: 12rem 0;
+  padding-top: var(--tc-section-padding-top);
+  padding-bottom: var(--tc-section-padding-bottom);
   background-image: linear-gradient(to bottom left, #0a5267dd, #07806cdd), url('../img/landscape.png');
   background-position: center, center bottom;
   background-size: contain, cover;
@@ -430,7 +444,8 @@
  ************************************************/
 
 .tc-section-organizers {
-  padding: 6rem 0;
+  padding-top: calc(var(--tc-section-padding-top) / 2);
+  padding-bottom: calc(var(--tc-section-padding-bottom) / 2);
   background-color: var(--bs-light);
   overflow: hidden;
 }
@@ -455,12 +470,25 @@
   max-width: 100%;
 }
 
+@media (max-width: 767px) {
+  .tc-organizer-list {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .tc-organizer-list__item {
+    max-width: 280px;
+    margin-bottom: 2rem;
+  }
+}
+
 /************************************************
  * Footer
  ************************************************/
 
 .tc-footer {
-  padding: 4rem 0;
+  padding-top: calc(var(--tc-section-padding-top) / 2);
+  padding-bottom: calc(var(--tc-section-padding-bottom) / 2);
   background-color: var(--bs-gray-200);
   color: var(--bs-gray-700);
   overflow: hidden;

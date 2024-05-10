@@ -11,7 +11,6 @@ module.exports = function(eleventyConfig) {
       includes: "_includes", /* Relative to "dir.input" folder */
       data: "_data", /* Relative to "dir.input" folder */
       output: "_site"
-    },
-    pathPrefix: "/event/2024-CCRS-VCMconference/"
+    }
   }
 };
