@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Conference static event page",
   "scripts": {
-    "dev": "eleventy --serve --incremental",
+    "dev": "eleventy --serve",
     "build": "eleventy"
   },
   "license": "ISC",

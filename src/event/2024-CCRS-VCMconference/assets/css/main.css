@@ -289,6 +289,48 @@
   text-decoration: none;
 }
 
+.tc-speaker-modal {
+  --bs-modal-border-radius: 0;
+  --bs-modal-border-width: 0;
+  --bs-modal-padding: 0 2rem 2rem 2rem;
+  --bs-modal-bg: var(--bs-primary);
+}
+
+.tc-speaker-modal .btn-close {
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+  --bs-btn-close-opacity: 0.75;
+  --bs-btn-close-hover-opacity: 1;
+
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  margin-left: auto;
+  background-size: 1.75rem;
+  /* color: #fff; */
+}
+
+.tc-speaker-modal .modal-content {
+  box-shadow: 0 20px 13px #0001, 0 6px 5px #0003;
+}
+
+.tc-speaker-modal__body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+}
+
+.tc-speaker-modal__body .tc-speaker__card {
+  flex-shrink: 0;
+  width: 16rem;
+  margin: 0;
+}
+
+.tc-speaker__content {
+  color: #fff;
+}
+
 /************************************************
  * Agenda Section
  ************************************************/
