@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-  <html lang="zh-TW">
+  <html lang="{{ lang }}">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2024 TCX & CCRS 國際研討會 &mdash; 自願性碳市場：誠信與永續</title>
+    <link rel="shortcut icon" href="{{ urlBase }}assets/img/favicon.ico" type="image/x-icon">
+    <title>{{ info[lang].seo.title }}</title>
+    <meta name="description" content="{{ info[lang].seo.description }}">
   
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +13,28 @@
   
     <link rel="stylesheet" href="{{ urlBase }}assets/css/bootstrap.min.css?v={{ buildVersion }}">
     <link rel="stylesheet" href="{{ urlBase }}assets/css/main.css?v={{ buildVersion }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ info[lang].seo.url }}">
+    <meta property="og:title" content="{{ info[lang].seo.title }}">
+    <meta property="og:description" content="{{ info[lang].seo.description }}">
+    <meta property="og:image" content="{{ info[lang].seo.coverImage }}">
+
+    <!-- https://developers.google.com/search/docs/appearance/structured-data/event -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "{{ info[lang].seo.title }}",
+      "startDate": "{{ info[lang].seo.eventStartDate }}",
+      "endDate": "{{ info[lang].seo.eventEndDate }}",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "image": [
+        "{{ info[lang].seo.coverImage }}"
+        ],
+      "description": "{{ info[lang].seo.description }}"
+    }
+    </script>
   </head>
   <body>
     <nav class="navbar fixed-top navbar-expand-md navbar-light justify-content-center">
@@ -136,48 +160,15 @@
         </h2>
   
         <div class="tc-articles">
+          {% for article in collections['2024-ccrs-vcmconference-articles'] reversed %}
           <div class="tc-article">
-            <div class="tc-article__image"></div>
-            <time class="tc-article__time" datetime="2024-04-29">2024 / 04 / 29</time>
+            <div class="tc-article__image" {% if article.data.coverImage %}style="background-image: url('{{ urlBase }}{{ article.data.coverImage }}');"{% endif %}></div>
+            <time class="tc-article__time" datetime="{{ article.data.date | date: '%Y-%m-%d' }}">{{ article.data.date | date: '%Y / %m / %d' }}</time>
             <h3 class="tc-article__title h4">
-              <a href="#" class="stretched-link text-white">倡議科學減碳 中山大學助企業淨零</a>
+              <a href="{{ article.data.url }}" target="_blank" class="stretched-link text-white">{{ article.data.title }}</a>
             </h3>
           </div>
-          <div class="tc-article">
-            <div class="tc-article__image"></div>
-            <time class="tc-article__time" datetime="2024-04-22">2024 / 04 / 22</time>
-            <h3 class="tc-article__title h4">
-              <a href="#" class="stretched-link text-white">【第十六屆發展研究年會】人與自然的動態發展：淨零轉型的跨域研究與反思</a>
-            </h3>
-          </div>
-          <div class="tc-article">
-            <div class="tc-article__image"></div>
-            <time class="tc-article__time" datetime="2024-04-02">2024 / 04 / 02</time>
-            <h3 class="tc-article__title h4">
-              <a href="#" class="stretched-link text-white">迎接全球零碳經濟趨勢 碳權中心助力企業預備淨零轉型</a>
-            </h3>
-          </div>
-          <div class="tc-article">
-            <div class="tc-article__image"></div>
-            <time class="tc-article__time" datetime="2024-04-29">2024 / 04 / 29</time>
-            <h3 class="tc-article__title h4">
-              <a href="#" class="stretched-link text-white">倡議科學減碳 中山大學助企業淨零</a>
-            </h3>
-          </div>
-          <div class="tc-article">
-            <div class="tc-article__image"></div>
-            <time class="tc-article__time" datetime="2024-04-22">2024 / 04 / 22</time>
-            <h3 class="tc-article__title h4">
-              <a href="#" class="stretched-link text-white">【第十六屆發展研究年會】人與自然的動態發展：淨零轉型的跨域研究與反思</a>
-            </h3>
-          </div>
-          <div class="tc-article">
-            <div class="tc-article__image"></div>
-            <time class="tc-article__time" datetime="2024-04-02">2024 / 04 / 02</time>
-            <h3 class="tc-article__title h4">
-              <a href="#" class="stretched-link text-white">迎接全球零碳經濟趨勢 碳權中心助力企業預備淨零轉型</a>
-            </h3>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </section>
