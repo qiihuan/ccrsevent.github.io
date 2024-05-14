@@ -34,8 +34,13 @@ jobs:
         with:
           node-version: 20
           cache: npm
+      - name: Setup Commit SHA
+        id: commit-sha
+        run: echo "code=`echo ${{ github.sha }} | cut -c1-7`" >> $GITHUB_OUTPUT
       - run: npm ci
       - run: npm run build
+        env:
+          BUILD_VERSION: ${{ steps.commit-sha.outputs.code }}
       # Default upload folder is "_site", which is our default output folder
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2

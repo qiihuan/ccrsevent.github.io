@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
   
-    <link rel="stylesheet" href="{{ urlBase }}assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ urlBase }}assets/css/main.css">
+    <link rel="stylesheet" href="{{ urlBase }}assets/css/bootstrap.min.css?v={{ buildVersion }}">
+    <link rel="stylesheet" href="{{ urlBase }}assets/css/main.css?v={{ buildVersion }}">
   </head>
   <body>
     <nav class="navbar fixed-top navbar-expand-md navbar-light justify-content-center">
@@ -28,16 +28,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-md-auto">
             <li class="nav-item">
-              <a class="nav-link text-center" href="#speakers">講者資訊</a>
+              <a class="nav-link text-center" href="#speakers">{{ info[lang].sections.speakers.navtitle }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="#agenda">大會議程</a>
+              <a class="nav-link text-center" href="#agenda">{{ info[lang].sections.agenda.navtitle }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="#articles">專題特寫</a>
+              <a class="nav-link text-center" href="#articles">{{ info[lang].sections.articles.navtitle }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center" href="en/">English</a>
+              <a class="nav-link text-center" href="{{ altLangUrl }}">{{ altLangLabel }}</a>
             </li>
           </ul>
         </div>
@@ -65,8 +65,8 @@
     <section class="tc-section-speakers" id="speakers">
       <div class="container">
         <h2 class="tc-section-header tc-section-header--right h1">
-          <span class="tc-section-header__title">專題講者及與談貴賓</span>
-          <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">Speakers</span></span>
+          <span class="tc-section-header__title">{{ info[lang].sections.speakers.title }}</span>
+          <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">{{ info[lang].sections.speakers.subtitle }}</span></span>
         </h2>
   
         <div class="row">
@@ -76,7 +76,7 @@
                 {% for speaker in collections['2024-ccrs-vcmconference-speakers'] %}
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                   <div class="tc-speaker">
-                    <div class="tc-speaker__card">
+                    <div class="tc-speaker__card" {% if speaker.data.coverImage %}style="background-image: url('{{ baseUrl }}{{ speaker.data.coverImage }}');"{% endif %}>
                       <span class="tc-speaker__label">
                         {{ speaker.data[lang].type }}</span>
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="tc-speaker__open-icon">
@@ -105,7 +105,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="modal-body">
             <div class="tc-speaker-modal__body">
-              <div class="tc-speaker__card">
+              <div class="tc-speaker__card" {% if speaker.data.coverImage %}style="background-image: url('{{ baseUrl }}{{ speaker.data.coverImage }}');"{% endif %}>
                 <span class="tc-speaker__label">
                   {{ speaker.data[lang].type }}</span>
               </div>
@@ -126,8 +126,8 @@
     <section class="tc-section-agenda" id="agenda">
       <div class="container">
         <h2 class="tc-section-header h1">
-          <span class="tc-section-header__title">大會議程</span>
-          <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">Agenda</span></span>
+          <span class="tc-section-header__title">{{ info[lang].sections.agenda.title }}</span>
+          <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">{{ info[lang].sections.agenda.subtitle }}</span></span>
         </h2>
         
         <div class="row">
@@ -237,8 +237,8 @@
     <section class="tc-section-articles" id="articles">
       <div class="container">
         <h2 class="tc-section-header tc-section-header--center h1">
-          <span class="tc-section-header__title">專題特寫</span>
-          <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">Featured Articles</span></span>
+          <span class="tc-section-header__title">{{ info[lang].sections.articles.title }}</span>
+          <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">{{ info[lang].sections.articles.subtitle }}</span></span>
         </h2>
   
         <div class="tc-articles">
@@ -290,30 +290,16 @@
   
     <section class="tc-section-organizers">
       <div class="container">
+        {% for section in info[lang].organizers %}
         <div class="tc-organizer-list">
-          <span class="tc-organizer-list__title fs-5">主辦單位</span>
-          <a href="https://www.tcx.com.tw/zh/" target="_blank" class="tc-organizer-list__item">
-            <img src="{{ urlBase }}assets/img/logo-tcx.png" class="tc-organizer-list__logo" alt="台灣碳權交易所">
+          <span class="tc-organizer-list__title fs-5">{{ section.title }}</span>
+          {% for item in section.items %}
+          <a href="{{ item.linkUrl }}" target="_blank" class="tc-organizer-list__item">
+            <img src="{{ urlBase }}{{ item.logoUrl }}" class="tc-organizer-list__logo" alt="{{ item.title }}">
           </a>
-          <a href="https://ccrs.org.tw/" target="_blank" class="tc-organizer-list__item">
-            <img src="{{ urlBase }}assets/img/logo-ccrs.png" class="tc-organizer-list__logo" alt="中山大學碳權中心">
-          </a>
-          <a href="https://www.twse.com.tw/" target="_blank" class="tc-organizer-list__item">
-            <img src="{{ urlBase }}assets/img/logo-twse.png" class="tc-organizer-list__logo" alt="台灣證券交易所">
-          </a>
+          {% endfor %}
         </div>
-        <div class="tc-organizer-list">
-          <span class="tc-organizer-list__title fs-5">協辦單位</span>
-          <a href="https://www.tdcc.com.tw/" target="_blank" class="tc-organizer-list__item">
-            <img src="{{ urlBase }}assets/img/logo-tdcc.png" class="tc-organizer-list__logo" alt="臺灣集中保管結算所">
-          </a>
-          <a href="https://www.tpex.org.tw/" target="_blank" class="tc-organizer-list__item">
-            <img src="{{ urlBase }}assets/img/logo-tx.png" class="tc-organizer-list__logo" alt="證券櫃檯買賣中心">
-          </a>
-          <a href="https://www.taifex.com.tw/" target="_blank" class="tc-organizer-list__item">
-            <img src="{{ urlBase }}assets/img/logo-taifex.png" class="tc-organizer-list__logo" alt="臺灣期貨交易所">
-          </a>
-        </div>
+        {% endfor %}
       </div>
     </section>
   
@@ -327,20 +313,20 @@
             </a>
           </div>
           <div class="col-12 col-md-6 col-lg-4 mb-3">
-            <p class="text-success">辦公室</p>
+            <p class="text-success">{{ info[lang].footer.officeTitle }}</p>
             <ul class="list-unstyled">
-              <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" fill="currentColor"/></svg> 806 高雄市前鎮區復興四路1號二樓</li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" fill="currentColor"/></svg> 07-5376727</li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" fill="currentColor"/></svg> {{ info[lang].footer.officeAddress }}</li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" fill="currentColor"/></svg> {{ info[lang].footer.officeTel }}</li>
             </ul>
-            <p class="text-success">研究室</p>
+            <p class="text-success">{{ info[lang].footer.schoolTitle }}</p>
             <ul class="list-unstyled">
-              <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" fill="currentColor"/></svg> 804 高雄市鼓山區蓮海路70號</li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" fill="currentColor"/></svg> 07-5252000 #5310</li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" fill="currentColor"/></svg> {{ info[lang].footer.schoolAddress }}</li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" fill="currentColor"/></svg> {{ info[lang].footer.schoolTel }}</li>
             </ul>
           </div>
           <div class="col-12 col-md-6 col-lg-4 text-center">
   
-            <p class="fs-5">線上諮詢服務</p>
+            <p class="fs-5">{{ info[lang].footer.contactUsTitle }}</p>
             <ul class="list-inline">
               <li class="list-inline-item">
                 <a href="https://ccrs.org.tw/contact.php" target="_blank" title="聯絡我們">
@@ -365,14 +351,13 @@
             </ul>
   
             <p>
-              Copyright © 2024 中山大學碳權研究與服務中心<br>
-              All rights reserved.
+              {{ info[lang].footer.copyright | newline_to_br }}
             </p>
           </div>
         </div>
       </div>
     </footer>
   
-    <script src="{{ urlBase }}assets/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ urlBase }}assets/js/bootstrap.bundle.min.js?v={{ buildVersion }}"></script>
   </body>
   </html>

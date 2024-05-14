@@ -236,6 +236,9 @@
   margin: -1rem -1rem 1rem -1rem;
   aspect-ratio: 3 / 4;
   background-color: var(--bs-info);
+  background-position: center;
+  background-size: cover;
+  background-position: center;
 }
 
 .tc-speaker__label {
@@ -323,12 +326,26 @@
 
 .tc-speaker-modal__body .tc-speaker__card {
   flex-shrink: 0;
+  flex-grow: 0;
   width: 16rem;
-  margin: 0;
+  margin: 0 auto;
 }
 
 .tc-speaker__content {
+  flex-grow: 1;
   color: #fff;
+}
+
+@media (max-width: 767px) {
+  .tc-speaker-modal .modal-content {
+    width: 100%;
+    height: 100%;
+  }
+
+  .tc-speaker-modal__body {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 /************************************************
