@@ -205,6 +205,9 @@
 }
 
 .tc-jumbotron__content {
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
   text-shadow: 0 4px 3px #0003, 0 2px 2px #0006, 0 0 2px var(--bs-primary);
 }
 
@@ -533,6 +536,10 @@
   .tc-organizer-list {
     flex-direction: column;
     text-align: center;
+  }
+
+  .tc-organizer-list__title {
+    margin-bottom: 2rem;
   }
 
   .tc-organizer-list__item {

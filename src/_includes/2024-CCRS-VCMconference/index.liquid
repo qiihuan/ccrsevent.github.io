@@ -26,7 +26,7 @@
           </svg>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-md-auto">
+          <ul class="navbar-nav ms-md-auto py-4 py-md-0">
             <li class="nav-item">
               <a class="nav-link text-center" href="#speakers">{{ info[lang].sections.speakers.navtitle }}</a>
             </li>
@@ -44,23 +44,7 @@
       </div>
     </nav>
   
-    <section class="tc-section-jumbotron">
-      <div class="tc-jumbotron">
-        <div class="container">
-          <span class="tc-jumbotron__tag h5">2024 TCX & CCRS 國際研討會</span>
-          <h1 class="tc-jumbotron__title tc-jumbotron__title--alt display-3">Integrity & Sustainability In</h1>
-          <h1 class="tc-jumbotron__title tc-jumbotron__capped">Voluntary Carbon Market</h1>
-          <h1 class="tc-jumbotron__title display-4"><span class="text-nowrap">自願性碳市場：</span><span class="text-nowrap">誠信與永續</span></h1>
-          <time class="tc-jumbotron__subtitle d-block h3 fw-bold" datetime="2024-05-28 09:00:00-0800"><span class="text-nowrap">2024 ‧ 05 ‧ 28 （二）</span><span class="text-nowrap">09:00 &ndash; 17:00</span></time>
-          <p class="tc-jumbotron__content fs-5">
-            全球邁入「排碳有價」時代，<br>
-            臺灣為加速推動碳定價，積極架構國內制度。<br>
-            於此國內制度起步的重要階段，本研討會邀請國內外重要專家學者，<br>
-            聚焦討論自願性碳市場中的誠信與永續議題。
-          </p>
-        </div>
-      </div>
-    </section>
+    {% block jumbotron %}{% endblock %}
   
     <section class="tc-section-speakers" id="speakers">
       <div class="container">
@@ -90,6 +74,9 @@
                     <h3 class="tc-speaker__name h5"><a href="#" class="stretched-link text-white" data-bs-toggle="modal" data-bs-target="#speaker-{{ speaker.page.fileSlug }}">{{ speaker.data[lang].name }}</a></h3>
                   </div>
                 </div>
+                {% if speaker.data.newlineAfter %}
+                <div class="col-12"></div>
+                {% endif %}
                 {% endfor %}
               </div>
             </div>
@@ -132,101 +119,8 @@
         
         <div class="row">
           <div class="col-12 col-xl-10 mx-auto">
-            <table class="table tc-agenda-table fs-5">
-              <tbody>
-                <tr><th>09:00 - 09:10</th><th>10 mins</th>
-                  <td>
-                    <span class="tc-agenda-table__title">開幕致詞</span>
-                  </td>
-                </tr>
-                <tr><th>09:10 - 09:25</th><th>15 mins</th>
-                  <td>
-                    <span class="tc-agenda-table__title">合作簽約儀式</span>
-                  </td>
-                </tr>
-                <tr><th>09:25 - 09:30</th><th>05 mins</th>
-                  <td>
-                    <span class="tc-agenda-table__title">大會合影</span>
-                  </td>
-                </tr>
-                <tr><th>09:30 - 10:00</th><th>30 mins</th>
-                  <td>
-                    <span class="tc-agenda-table__label">特約演講</span>
-                    <span class="tc-agenda-table__title">自願性碳市場：誠信與永續</span>
-                  </td>
-                </tr>
-                <tr><th>10:00 - 10:10</th><th>10 mins</th>
-                  <td>
-                    <span class="tc-agenda-table__title">茶敘</span>
-                  </td>
-                </tr>
-                <tr><th>10:10 - 11:20</th><th>70 mins</th>
-                  <td>
-                    <div class="mb-3">
-                      <span class="tc-agenda-table__label">專題演講 #1</span>
-                      <span class="tc-agenda-table__title">建立在地碳權方案：影響碳權品質之因素</span>
-                    </div>
-                    <span class="tc-agenda-table__speaker">Tani Colbert-Sangree</span><br>
-                    <span class="tc-agenda-table__job-title fs-6">GHG Management Institute, Project Manager.</span>
-                  </td>
-                </tr>
-                <tr><th>11:20 - 12:30</th><th>70 mins</th>
-                  <td>
-                    <div class="mb-3">
-                      <span class="tc-agenda-table__label">專題演講 #2</span>
-                      <span class="tc-agenda-table__title">強制性與自願性碳市場的趨同</span>
-                    </div>
-                    <span class="tc-agenda-table__speaker">Fundile Maphanga</span><br>
-                    <span class="tc-agenda-table__job-title fs-6">AlliedOffsets, Carbon Policy Analyst.</span>
-                  </td>
-                </tr>
-                <tr><th>12:30 - 13:30</th><th>60 mins</th>
-                  <td>
-                    <span class="tc-agenda-table__title">午餐</span>
-                  </td>
-                </tr>
-                <tr><th>13:30 - 15:00</th><th>90 mins</th>
-                  <td>
-                    <div class="mb-3">
-                      <span class="tc-agenda-table__label">專題討論 #1</span>
-                      <span class="tc-agenda-table__title">碳權品質評等機制</span>
-                    </div>
-                    <span class="fs-6 text-muted">[主持人]</span><br>
-                    <span class="tc-agenda-table__speaker">蔡宏政</span>
-                    <span class="tc-agenda-table__job-title fs-6">／國立中山大學碳權研究與服務中心教授兼主任</span><br>
-                    <span class="fs-6 text-muted">[與談人]</span><br>
-                    <span class="tc-agenda-table__speaker">Brad Weilbacher</span><span class="tc-agenda-table__job-title fs-6">／AlliedOffsets, Enterprise Sales Lead.</span><br>
-                    <span class="tc-agenda-table__speaker">Colin SNG</span><span class="tc-agenda-table__job-title fs-6">／BeZero, Head of Sales APAC.</span><br>
-                    <span class="tc-agenda-table__speaker">Louis Booth</span><span class="tc-agenda-table__job-title fs-6">／Sylvera, APAC Commercial Lead.</span>
-                  </td>
-                </tr>
-                <tr><th>15:00 - 15:15</th><th>15 mins</th>
-                  <td>
-                    <span class="tc-agenda-table__title">茶敘</span>
-                  </td>
-                </tr>
-                <tr><th>15:15 - 16:45</th><th>90 mins</th>
-                  <td>
-                    <div class="mb-3">
-                      <span class="tc-agenda-table__label">專題討論 #2</span>
-                      <span class="tc-agenda-table__title">自願性碳權在臺灣的可能運用</span>
-                    </div>
-                    <span class="fs-6 text-muted">[主持人]</span><br>
-                    <span class="tc-agenda-table__speaker">洪申翰</span>
-                    <span class="tc-agenda-table__job-title fs-6">／立法委員</span><br>
-                    <span class="fs-6 text-muted">[與談人]</span><br>
-                    <span class="tc-agenda-table__speaker">劉仲恩</span><span class="tc-agenda-table__job-title fs-6">／國立臺灣大學社會學系副教授</span><br>
-                    <span class="tc-agenda-table__speaker">Tani Colbert-Sangree</span><span class="tc-agenda-table__job-title fs-6">／GHG Management Institute, Project Manager.</span><br>
-                      <span class="tc-agenda-table__speaker">田建中</span><span class="tc-agenda-table__job-title fs-6">／臺灣碳權交易所總經理</span>
-                  </td>
-                </tr>
-                <tr><th>16:45 - 17:00</th><th>15 mins</th>
-                  <td>
-                    <span class="tc-agenda-table__title">結語</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+
+            {% block agenda %}{% endblock %}
   
             <div class="tc-agenda__caption fs-5 text-muted">＊主辦單位保留變更議程之權利，實際議程以大會當日公告為主＊</div>
           </div>
@@ -359,5 +253,19 @@
     </footer>
   
     <script src="{{ urlBase }}assets/js/bootstrap.bundle.min.js?v={{ buildVersion }}"></script>
+    <script>
+    (function () {
+      var navbar = bootstrap.Collapse.getOrCreateInstance(
+        document.getElementById('navbarSupportedContent'),
+        { toggle: false }
+      );
+
+      document.querySelectorAll('.nav-link').forEach(function (el) {
+        el.addEventListener('click', function () {
+          navbar.hide();
+        });
+      });
+    })();
+    </script>
   </body>
   </html>
