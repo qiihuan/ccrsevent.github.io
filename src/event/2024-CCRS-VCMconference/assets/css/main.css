@@ -35,7 +35,8 @@
 .navbar > .container {
   background-color: #fff6;
   border-radius: 0.5rem;
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
 }
 
 .navbar-brand img {
@@ -377,7 +378,8 @@
 
   margin-top: 4rem;
   border: 1px solid #fff;
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
 }
 
 .tc-agenda-table > :not(caption) > * > * {
