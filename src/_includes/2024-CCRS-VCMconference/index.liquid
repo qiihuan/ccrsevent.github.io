@@ -13,6 +13,7 @@
   
     <link rel="stylesheet" href="{{ urlBase }}assets/css/bootstrap.min.css?v={{ buildVersion }}">
     <link rel="stylesheet" href="{{ urlBase }}assets/css/main.css?v={{ buildVersion }}">
+    <link rel="stylesheet" href="{{ urlBase }}assets/css/sal.min.css?v={{ buildVersion }}">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ info[lang].seo.url }}">
@@ -72,7 +73,8 @@
   
     <section class="tc-section-speakers" id="speakers">
       <div class="container">
-        <h2 class="tc-section-header tc-section-header--right h1">
+        <h2 class="tc-section-header tc-section-header--right h1"
+          data-sal="slide-up" data-sal-delay="200">
           <span class="tc-section-header__title">{{ info[lang].sections.speakers.title }}</span>
           <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">{{ info[lang].sections.speakers.subtitle }}</span></span>
         </h2>
@@ -83,7 +85,8 @@
               <div class="row gx-5 justify-content-center">
                 {% for speaker in collections['2024-ccrs-vcmconference-speakers'] %}
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                  <div class="tc-speaker">
+                  <div class="tc-speaker"
+                    data-sal="slide-up" data-sal-delay="{{ forloop.index | times: 50 }}">
                     <div class="tc-speaker__card" {% if speaker.data.coverImage %}style="background-image: url('{{ urlBase }}{{ speaker.data.coverImage }}');"{% endif %}>
                       <span class="tc-speaker__label">
                         {{ speaker.data[lang].type }}</span>
@@ -136,7 +139,8 @@
   
     <section class="tc-section-agenda" id="agenda">
       <div class="container">
-        <h2 class="tc-section-header h1">
+        <h2 class="tc-section-header h1"
+          data-sal="slide-up" data-sal-delay="200">
           <span class="tc-section-header__title">{{ info[lang].sections.agenda.title }}</span>
           <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">{{ info[lang].sections.agenda.subtitle }}</span></span>
         </h2>
@@ -154,14 +158,16 @@
   
     <section class="tc-section-articles" id="articles">
       <div class="container">
-        <h2 class="tc-section-header tc-section-header--center h1">
+        <h2 class="tc-section-header tc-section-header--center h1"
+          data-sal="slide-up" data-sal-delay="200">
           <span class="tc-section-header__title">{{ info[lang].sections.articles.title }}</span>
           <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">{{ info[lang].sections.articles.subtitle }}</span></span>
         </h2>
   
         <div class="tc-articles">
           {% for article in collections['2024-ccrs-vcmconference-articles'] reversed %}
-          <div class="tc-article">
+          <div class="tc-article"
+            data-sal="slide-up" data-sal-delay="{{ forloop.index | times: 50 }}">
             <div class="tc-article__image" {% if article.data.coverImage %}style="background-image: url('{{ urlBase }}{{ article.data.coverImage }}');"{% endif %}></div>
             <time class="tc-article__time" datetime="{{ article.data.date | date: '%Y-%m-%d' }}">{{ article.data.date | date: '%Y / %m / %d' }}</time>
             <h3 class="tc-article__title h4">
@@ -176,7 +182,8 @@
     <section class="tc-section-organizers">
       <div class="container">
         {% for section in info[lang].organizers %}
-        <div class="tc-organizer-list">
+        <div class="tc-organizer-list"
+          data-sal="slide-up" data-sal-delay="200">
           <span class="tc-organizer-list__title fs-5">{{ section.title }}</span>
           {% for item in section.items %}
           <a href="{{ item.linkUrl }}" target="_blank" class="tc-organizer-list__item">
@@ -192,12 +199,14 @@
       <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
       <div class="container">
         <div class="row gx-5">
-          <div class="col-12 col-md-6 col-lg-4 mb-3">
+          <div class="col-12 col-md-6 col-lg-4 mb-3"
+            data-sal="slide-up" data-sal-delay="200">
             <a href="https://ccrs.org.tw/" target="_blank" class="tc-footer__logo">
               <img src="{{ urlBase }}assets/img/logo-ccrs.png" alt="中山大學碳權中心">
             </a>
           </div>
-          <div class="col-12 col-md-6 col-lg-4 mb-3">
+          <div class="col-12 col-md-6 col-lg-4 mb-3"
+            data-sal="slide-up" data-sal-delay="250">
             <p class="text-success">{{ info[lang].footer.officeTitle }}</p>
             <ul class="list-unstyled">
               <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" fill="currentColor"/></svg> {{ info[lang].footer.officeAddress }}</li>
@@ -209,8 +218,8 @@
               <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" fill="currentColor"/></svg> {{ info[lang].footer.schoolTel }}</li>
             </ul>
           </div>
-          <div class="col-12 col-md-6 col-lg-4 text-center">
-  
+          <div class="col-12 col-md-6 col-lg-4 text-center"
+            data-sal="slide-up" data-sal-delay="300">
             <p class="fs-5">{{ info[lang].footer.contactUsTitle }}</p>
             <ul class="list-inline">
               <li class="list-inline-item">
@@ -244,6 +253,7 @@
     </footer>
   
     <script src="{{ urlBase }}assets/js/bootstrap.bundle.min.js?v={{ buildVersion }}"></script>
+    <script src="{{ urlBase }}assets/js/sal.min.js?v={{ buildVersion }}"></script>
     <script>
     (function () {
       var navbar = bootstrap.Collapse.getOrCreateInstance(
@@ -255,6 +265,10 @@
         el.addEventListener('click', function () {
           navbar.hide();
         });
+      });
+
+      sal({
+        threshold: 0.1
       });
     })();
     </script>
