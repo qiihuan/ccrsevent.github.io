@@ -74,7 +74,7 @@
     <section class="tc-section-speakers" id="speakers">
       <div class="container">
         <h2 class="tc-section-header tc-section-header--right h1"
-          data-sal="slide-up" data-sal-delay="200">
+          data-sal="slide-up" data-sal-delay="200" data-sal-duration="600">
           <span class="tc-section-header__title">{{ info[lang].sections.speakers.title }}</span>
           <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">{{ info[lang].sections.speakers.subtitle }}</span></span>
         </h2>
@@ -86,7 +86,7 @@
                 {% for speaker in collections['2024-ccrs-vcmconference-speakers'] %}
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                   <div class="tc-speaker"
-                    data-sal="slide-up" data-sal-delay="{{ forloop.index | times: 50 }}">
+                    data-sal="slide-up" data-sal-delay="{{ forloop.index | times: 50 }}" data-sal-duration="600">
                     <div class="tc-speaker__card" {% if speaker.data.coverImage %}style="background-image: url('{{ urlBase }}{{ speaker.data.coverImage }}');"{% endif %}>
                       <span class="tc-speaker__label">
                         {{ speaker.data[lang].type }}</span>
@@ -140,7 +140,7 @@
     <section class="tc-section-agenda" id="agenda">
       <div class="container">
         <h2 class="tc-section-header h1"
-          data-sal="slide-up" data-sal-delay="200">
+          data-sal="slide-up" data-sal-delay="200" data-sal-duration="600">
           <span class="tc-section-header__title">{{ info[lang].sections.agenda.title }}</span>
           <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">{{ info[lang].sections.agenda.subtitle }}</span></span>
         </h2>
@@ -159,7 +159,7 @@
     <section class="tc-section-articles" id="articles">
       <div class="container">
         <h2 class="tc-section-header tc-section-header--center h1"
-          data-sal="slide-up" data-sal-delay="200">
+          data-sal="slide-up" data-sal-delay="200" data-sal-duration="600">
           <span class="tc-section-header__title">{{ info[lang].sections.articles.title }}</span>
           <span class="tc-section-header__subtitle"><span class="d-inline-block h2 align-bottom fw-bolder">{{ info[lang].sections.articles.subtitle }}</span></span>
         </h2>
@@ -167,7 +167,7 @@
         <div class="tc-articles">
           {% for article in collections['2024-ccrs-vcmconference-articles'] reversed %}
           <div class="tc-article"
-            data-sal="slide-up" data-sal-delay="{{ forloop.index | times: 50 }}">
+            data-sal="slide-up" data-sal-delay="{{ forloop.index | times: 50 }}" data-sal-duration="600">
             <div class="tc-article__image" {% if article.data.coverImage %}style="background-image: url('{{ urlBase }}{{ article.data.coverImage }}');"{% endif %}></div>
             <time class="tc-article__time" datetime="{{ article.data.date | date: '%Y-%m-%d' }}">{{ article.data.date | date: '%Y / %m / %d' }}</time>
             <h3 class="tc-article__title h4">
@@ -183,7 +183,7 @@
       <div class="container">
         {% for section in info[lang].organizers %}
         <div class="tc-organizer-list"
-          data-sal="slide-up" data-sal-delay="200">
+          data-sal="slide-up" data-sal-delay="200" data-sal-duration="600">
           <span class="tc-organizer-list__title fs-5">{{ section.title }}</span>
           {% for item in section.items %}
           <a href="{{ item.linkUrl }}" target="_blank" class="tc-organizer-list__item">
@@ -200,13 +200,13 @@
       <div class="container">
         <div class="row gx-5">
           <div class="col-12 col-md-6 col-lg-4 mb-3"
-            data-sal="slide-up" data-sal-delay="200">
+            data-sal="slide-up" data-sal-delay="200" data-sal-duration="600">
             <a href="https://ccrs.org.tw/" target="_blank" class="tc-footer__logo">
               <img src="{{ urlBase }}assets/img/logo-ccrs.png" alt="中山大學碳權中心">
             </a>
           </div>
           <div class="col-12 col-md-6 col-lg-4 mb-3"
-            data-sal="slide-up" data-sal-delay="250">
+            data-sal="slide-up" data-sal-delay="300" data-sal-duration="600">
             <p class="text-success">{{ info[lang].footer.officeTitle }}</p>
             <ul class="list-unstyled">
               <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" fill="currentColor"/></svg> {{ info[lang].footer.officeAddress }}</li>
@@ -219,7 +219,7 @@
             </ul>
           </div>
           <div class="col-12 col-md-6 col-lg-4 text-center"
-            data-sal="slide-up" data-sal-delay="300">
+            data-sal="slide-up" data-sal-delay="400" data-sal-duration="600">
             <p class="fs-5">{{ info[lang].footer.contactUsTitle }}</p>
             <ul class="list-inline">
               <li class="list-inline-item">
